@@ -10,3 +10,7 @@ asgiref==3.11.0
 sqlparse==0.5.4
 tzdata==2025.2
 djangorestframework-simplejwt==5.3.1
+
+# Produção
+gunicorn==23.0.0
+whitenoise==6.7.0

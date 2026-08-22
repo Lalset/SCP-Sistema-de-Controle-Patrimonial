@@ -1,7 +1,8 @@
-# Segredos / configuração local
+# Segredos(Shhh) / configuração local
 .env
 *.env
 !.env.example
+!.env.prod.example
 
 # Python / Django
 __pycache__/
@@ -25,8 +26,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Certificados de desenvolvimento (mkcert) — nunca versionar
+# Certificados (dev local com mkcert e produção com openssl na EC2)
+# Lembrar de unca versionar, cada ambiente gera o seu
 frontend/certificados/
+certs/
 
 # Editores / SO
 .vscode/*
