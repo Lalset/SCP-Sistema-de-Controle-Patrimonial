@@ -1,0 +1,31 @@
+.scanner-inventario-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.scanner-header {
+    margin-bottom: 24px;
+}
+
+.scanner-header h1 {
+    margin-bottom: 6px;
+}
+
+.scanner-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.scanner-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+    border: 1px solid #f1f5f9;
+}
+
+.scanner-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}

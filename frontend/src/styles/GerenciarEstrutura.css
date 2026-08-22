@@ -1,0 +1,102 @@
+/* CONTAINER */
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.admin-container h1 {
+    margin-bottom: 24px;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+
+/* CARD */
+
+.admin-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.admin-card h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+
+/* FORM */
+
+.admin-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.admin-form input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+}
+
+
+/* LISTA */
+
+.admin-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    transition: background 0.2s ease;
+}
+
+.admin-list li span {
+    cursor: pointer;
+    font-weight: 500;
+    flex: 1;
+}
+
+.admin-list li.active {
+    background-color: #f3f4f6;
+}
+
+
+/* AÇÕES */
+
+.admin-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+    .admin-form {
+        flex-direction: column;
+    }
+
+    .admin-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

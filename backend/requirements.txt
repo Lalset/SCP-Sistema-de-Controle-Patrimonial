@@ -1,0 +1,12 @@
+Django==5.0.4
+djangorestframework==3.16.1
+django-cors-headers==4.9.0
+psycopg2-binary==2.9.11
+
+weasyprint==61.2
+pydyf==0.10.0
+
+asgiref==3.11.0
+sqlparse==0.5.4
+tzdata==2025.2
+djangorestframework-simplejwt==5.3.1

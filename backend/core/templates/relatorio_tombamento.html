@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Tombamento {{ ano }}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 6px;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+        }
+
+        .sala {
+            margin-left: 20px;
+        }
+
+        .rodape {
+            margin-top: 50px;
+            font-size: 10px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Relatório de Tombamento – {{ ano }}</h1>
+
+{% for ambiente in ambientes %}
+    <h2>Ambiente: {{ ambiente.nome }}</h2>
+
+    {% for sala in ambiente.salas %}
+        <div class="sala">
+            <h3>Sala: {{ sala.nome }}</h3>
+
+            {% if sala.itens|length == 0 %}
+                <p>Nenhum item registrado nesta sala.</p>
+            {% else %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tombamento</th>
+                            <th>Empenho</th>
+                            <th>Campus</th>
+                            <th>Nota Fiscal</th>
+                            <th>Data Entrada</th>
+                            <th>Sala Original</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in sala.itens %}
+                        <tr>
+                            <td>{{ item.nome|default:"-" }}</td>
+                            <td>{{ item.codigo_tombamento }}</td>
+                            <td>{{ item.empenho|default:"-" }}</td>
+                            <td>{{ item.campus_origem|default:"-" }}</td>
+                            <td>{{ item.nota_fiscal|default:"-" }}</td>
+                            <td>{{ item.data_entrada|default:"-" }}</td>
+                            <td>{{ item.sala_original|default:"-" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<div class="rodape">
+    Relatório gerado em {{ data_geracao }}
+</div>
+
+</body>
+</html>

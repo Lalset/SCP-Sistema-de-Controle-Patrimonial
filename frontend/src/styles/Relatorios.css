@@ -1,0 +1,60 @@
+.relatorios-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.relatorios-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.relatorios-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 28px;
+}
+
+/* GRID */
+
+.relatorios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+/* CARD */
+
+.relatorio-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.relatorio-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.relatorio-card h3 {
+    margin: 0;
+    font-size: 22px;
+    color: #111827;
+}
+
+.relatorio-card p {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.relatorio-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

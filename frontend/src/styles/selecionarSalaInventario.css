@@ -1,0 +1,50 @@
+.selecionar-sala-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.ambiente-bloco {
+    margin-bottom: 32px;
+}
+
+.ambiente-titulo {
+    margin-bottom: 14px;
+    font-size: 18px;
+}
+
+.salas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.sala-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    cursor: pointer;
+    border: 1px solid #f1f5f9;
+    transition: all 0.15s ease;
+}
+
+.sala-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.sala-card h3 {
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+.sala-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.sem-salas {
+    color: #9ca3af;
+    font-size: 14px;
+}
