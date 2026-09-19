@@ -252,6 +252,7 @@ export default function GerenciarEstrutura() {
                 <div className="admin-card">
                     <h2>Itens da Sala</h2>
 
+                    <div className="table-scroll">
                     <table className="table">
                         <thead>
                             <tr>
@@ -316,6 +317,7 @@ export default function GerenciarEstrutura() {
                             ))}
                         </tbody>
                     </table>
+                    </div>
                 </div>
             )}
         </div>

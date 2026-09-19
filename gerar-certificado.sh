@@ -1,12 +1,16 @@
 #!/bin/bash
-# Gera um certificado autoassinado pra rodar em HTTPS na EC2, usando o IP 
-# público atual da instância. Rode esse script DENTRO da EC2, na raiz do
+# Gera um certificado autoassinado pra rodar em HTTPS na EC2, usando o IP
+# público atual da instância. Lembrar rodar esse script DENTRO da EC2, na raiz do
 # projeto, sempre que o IP público mudar (ele muda quando a instância para
 # e é ligada de novo, a menos que você tenha um Elastic IP fixo).
-# Isso aqui vai ser o primeiro teste.
 set -e
 
-IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+# A AWS exige um token (IMDSv2) pra consultar os metadados da instância.
+TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" \
+  -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+
+IP=$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" \
+  http://169.254.169.254/latest/meta-data/public-ipv4)
 
 if [ -z "$IP" ]; then
   echo "Não consegui detectar o IP público automaticamente."

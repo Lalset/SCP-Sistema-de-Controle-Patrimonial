@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     margin: 0;
     background-color: #f4f6f9;
@@ -122,67 +127,3 @@ body {
     cursor: not-allowed;
 }
 
-
-/* LAYOUT BASE */
-
-.app-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.app-header {
-    height: 64px;
-    background-color: #1f2937;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.app-logo {
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.app-logo:hover {
-    opacity: 0.85;
-}
-
-.app-nav {
-    display: flex;
-    gap: 12px;
-}
-
-.nav-btn {
-    background: transparent;
-    border: none;
-    color: #e5e7eb;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.nav-btn:hover {
-    background-color: #374151;
-    color: #ffffff;
-}
-
-.logout {
-    color: #f87171;
-}
-
-.logout:hover {
-    background-color: #7f1d1d;
-    color: #ffffff;
-}
-
-.app-content {
-    flex: 1;
-    padding: 32px;
-}
