@@ -13,7 +13,7 @@ export default function Home() {
 
                 {/* ESTRUTURA */}
                 <div className="home-card">
-                    <Link to="/admin">
+                    <Link to="/gerenciar-estrutura">
                         <h3>Gerenciar Estrutura</h3>
                         <p>
                             Cadastre ambientes, blocos e salas que compõem

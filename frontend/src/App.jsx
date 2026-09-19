@@ -35,7 +35,7 @@ export default function App() {
                         <Route path="/" element={<Home />} />
 
                         {/* Administrativo */}
-                        <Route path="/admin" element={<GerenciarEstrutura />} />
+                        <Route path="/gerenciar-estrutura" element={<GerenciarEstrutura />} />
 
                         {/* Tombamento */}
                         <Route path="/tombamento" element={<SelecionarSala />} />
