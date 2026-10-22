@@ -63,16 +63,27 @@ body {
     }
 }
 
+/* Envolve tabelas largas pra rolar na horizontal em vez de cortar/estourar a tela */
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 
 /* BOTÕES GLOBAIS */
 
 .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 8px 14px;
     border-radius: 6px;
     border: none;
     cursor: pointer;
     font-size: 13px;
     font-weight: 500;
+    line-height: 1.2;
     transition: all 0.2s ease;
 }
 

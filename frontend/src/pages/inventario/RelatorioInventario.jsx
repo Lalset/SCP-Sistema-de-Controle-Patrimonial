@@ -148,6 +148,7 @@ export default function RelatorioInventario() {
                 <p><b>Não encontrados:</b> {resumo.nao_encontrados}</p>
             </div>
 
+            <div className="table-scroll">
             <table className="relatorio-inventario-table">
                 <thead>
                     <tr>
@@ -201,6 +202,7 @@ export default function RelatorioInventario() {
                     })}
                 </tbody>
             </table>
+            </div>
 
             <button
                 className="btn btn-danger"

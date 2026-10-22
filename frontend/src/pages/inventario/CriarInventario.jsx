@@ -83,9 +83,9 @@ export default function CriarInventario() {
                                 {new Date(inv.criado_em).toLocaleDateString()}
                             </p>
 
-                            <div>
+                            <div className="relatorio-card-actions">
                                 <button
-                                    className="btn"
+                                    className="btn btn-primary"
                                     onClick={() =>
                                         navigate(`/inventario/${inv.id}`)
                                     }

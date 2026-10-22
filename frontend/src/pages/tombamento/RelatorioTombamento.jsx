@@ -59,6 +59,7 @@ export default function RelatorioTombamento() {
                             {sala.itens.length === 0 ? (
                                 <p>Nenhum item registrado.</p>
                             ) : (
+                                <div className="table-scroll">
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -85,6 +86,7 @@ export default function RelatorioTombamento() {
                                         ))}
                                     </tbody>
                                 </table>
+                                </div>
                             )}
                         </div>
                     ))}
