@@ -165,21 +165,23 @@ export default function GerenciarEstrutura() {
                                     <span onClick={() => setAmbienteId(a.id)}>
                                         {a.nome}
                                     </span>
-                                    <button
-                                        className="btn btn-edit"
-                                        onClick={() => {
-                                            setEditandoAmbiente(a.id);
-                                            setValorEditado(a.nome);
-                                        }}
-                                    >
-                                        Editar
-                                    </button>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() => excluirAmbiente(a.id)}
-                                    >
-                                        Excluir
-                                    </button>
+                                    <div className="admin-list-actions">
+                                        <button
+                                            className="btn btn-edit"
+                                            onClick={() => {
+                                                setEditandoAmbiente(a.id);
+                                                setValorEditado(a.nome);
+                                            }}
+                                        >
+                                            Editar
+                                        </button>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => excluirAmbiente(a.id)}
+                                        >
+                                            Excluir
+                                        </button>
+                                    </div>
                                 </>
                             )}
                         </li>
@@ -224,21 +226,23 @@ export default function GerenciarEstrutura() {
                                         <span onClick={() => setSalaId(s.id)}>
                                             {s.nome}
                                         </span>
-                                        <button
-                                            className="btn btn-edit"
-                                            onClick={() => {
-                                                setEditandoSala(s.id);
-                                                setValorEditado(s.nome);
-                                            }}
-                                        >
-                                            Editar
-                                        </button>
-                                        <button
-                                            className="btn btn-danger"
-                                            onClick={() => excluirSala(s.id)}
-                                        >
-                                            Excluir
-                                        </button>
+                                        <div className="admin-list-actions">
+                                            <button
+                                                className="btn btn-edit"
+                                                onClick={() => {
+                                                    setEditandoSala(s.id);
+                                                    setValorEditado(s.nome);
+                                                }}
+                                            >
+                                                Editar
+                                            </button>
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={() => excluirSala(s.id)}
+                                            >
+                                                Excluir
+                                            </button>
+                                        </div>
                                     </>
                                 )}
                             </li>
