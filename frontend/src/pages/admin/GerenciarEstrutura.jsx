@@ -19,6 +19,10 @@ export default function GerenciarEstrutura() {
 
     const [valorEditado, setValorEditado] = useState("");
 
+    const [itensSelecionados, setItensSelecionados] = useState([]);
+    const [novoNomeLote, setNovoNomeLote] = useState("");
+    const [renomeandoLote, setRenomeandoLote] = useState(false);
+
     const normalizarLista = (data) => {
         if (Array.isArray(data)) return data;
         if (Array.isArray(data?.results)) return data.results;
@@ -104,6 +108,9 @@ export default function GerenciarEstrutura() {
     useEffect(() => {
         if (!salaId) return;
 
+        setItensSelecionados([]);
+        setNovoNomeLote("");
+
         api.get(`itens/?sala_atual=${salaId}`)
             .then(res => setItens(normalizarLista(res.data)))
             .catch(() => setItens([]));
@@ -113,7 +120,7 @@ export default function GerenciarEstrutura() {
         const res = await api.patch(`itens/${id}/`, { nome: valorEditado });
         setItens(prev => prev.map(i => i.id === id ? res.data : i));
         setEditandoItem(null);
-        setValorEditado(""); 
+        setValorEditado("");
     };
 
     const excluirItem = async (id) => {
@@ -121,6 +128,58 @@ export default function GerenciarEstrutura() {
 
         await api.delete(`itens/${id}/`);
         setItens(prev => prev.filter(i => i.id !== id));
+        setItensSelecionados(prev => prev.filter(itemId => itemId !== id));
+    };
+
+    const alternarSelecaoItem = (id) => {
+        setItensSelecionados(prev =>
+            prev.includes(id)
+                ? prev.filter(itemId => itemId !== id)
+                : [...prev, id]
+        );
+    };
+
+    const alternarSelecionarTodos = () => {
+        if (itensSelecionados.length === itens.length) {
+            setItensSelecionados([]);
+        } else {
+            setItensSelecionados(itens.map(i => i.id));
+        }
+    };
+
+    const renomearSelecionados = async () => {
+        if (!novoNomeLote.trim() || itensSelecionados.length === 0) return;
+
+        const confirmado = confirm(
+            `Renomear ${itensSelecionados.length} item(ns) para "${novoNomeLote}"?`
+        );
+        if (!confirmado) return;
+
+        try {
+            setRenomeandoLote(true);
+
+            await Promise.all(
+                itensSelecionados.map(id =>
+                    api.patch(`itens/${id}/`, { nome: novoNomeLote })
+                )
+            );
+
+            setItens(prev =>
+                prev.map(i =>
+                    itensSelecionados.includes(i.id)
+                        ? { ...i, nome: novoNomeLote }
+                        : i
+                )
+            );
+
+            setItensSelecionados([]);
+            setNovoNomeLote("");
+        } catch (err) {
+            console.error(err);
+            alert("Erro ao renomear os itens selecionados");
+        } finally {
+            setRenomeandoLote(false);
+        }
     };
 
     /* UI */
@@ -256,10 +315,37 @@ export default function GerenciarEstrutura() {
                 <div className="admin-card">
                     <h2>Itens da Sala</h2>
 
+                    {itensSelecionados.length > 0 && (
+                        <div className="renomear-lote-bar">
+                            <span>
+                                {itensSelecionados.length} item(ns) selecionado(s)
+                            </span>
+                            <input
+                                placeholder="Novo nome para os selecionados"
+                                value={novoNomeLote}
+                                onChange={e => setNovoNomeLote(e.target.value)}
+                            />
+                            <button
+                                className="btn btn-primary"
+                                onClick={renomearSelecionados}
+                                disabled={renomeandoLote || !novoNomeLote.trim()}
+                            >
+                                {renomeandoLote ? "Renomeando..." : "Renomear selecionados"}
+                            </button>
+                        </div>
+                    )}
+
                     <div className="table-scroll">
                     <table className="table">
                         <thead>
                             <tr>
+                                <th>
+                                    <input
+                                        type="checkbox"
+                                        checked={itens.length > 0 && itensSelecionados.length === itens.length}
+                                        onChange={alternarSelecionarTodos}
+                                    />
+                                </th>
                                 <th>Nome</th>
                                 <th>Tombamento</th>
                                 <th>Empenho</th>
@@ -272,6 +358,13 @@ export default function GerenciarEstrutura() {
                         <tbody>
                             {itens.map(i => (
                                 <tr key={i.id}>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            checked={itensSelecionados.includes(i.id)}
+                                            onChange={() => alternarSelecaoItem(i.id)}
+                                        />
+                                    </td>
                                     <td>
                                         {editandoItem === i.id ? (
                                             <input

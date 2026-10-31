@@ -11,6 +11,7 @@ export default function RelatorioInventario() {
     const [dados, setDados] = useState(null);
     const [loading, setLoading] = useState(true);
     const [excluindo, setExcluindo] = useState(false);
+    const [filtroSala, setFiltroSala] = useState("");
 
     useEffect(() => {
         async function carregar() {
@@ -136,6 +137,16 @@ export default function RelatorioInventario() {
 
     const { inventario, resumo, itens } = dados;
 
+    const salasUnicas = [...new Set(
+        itens
+            .map((registro) => registro.sala_oficial_nome)
+            .filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
+
+    const itensFiltrados = filtroSala
+        ? itens.filter((registro) => registro.sala_oficial_nome === filtroSala)
+        : itens;
+
     return (
         <div className="page-container relatorio-inventario-container">
             <h1>Relatório do Inventário</h1>
@@ -146,6 +157,22 @@ export default function RelatorioInventario() {
                 <p><b>OK:</b> {resumo.ok}</p>
                 <p><b>Fora do lugar:</b> {resumo.fora_do_lugar}</p>
                 <p><b>Não encontrados:</b> {resumo.nao_encontrados}</p>
+            </div>
+
+            <div className="filtro-sala">
+                <label htmlFor="filtro-sala-select">Filtrar por sala:</label>
+                <select
+                    id="filtro-sala-select"
+                    value={filtroSala}
+                    onChange={(e) => setFiltroSala(e.target.value)}
+                >
+                    <option value="">Todas as salas ({itens.length})</option>
+                    {salasUnicas.map((nome) => (
+                        <option key={nome} value={nome}>
+                            {nome} ({itens.filter(r => r.sala_oficial_nome === nome).length})
+                        </option>
+                    ))}
+                </select>
             </div>
 
             <div className="table-scroll">
@@ -164,7 +191,15 @@ export default function RelatorioInventario() {
                     </tr>
                 </thead>
                 <tbody>
-                    {itens.map((registro) => {
+                    {itensFiltrados.length === 0 && (
+                        <tr>
+                            <td colSpan={9} style={{ textAlign: "center", color: "#6b7280" }}>
+                                Nenhum item nessa sala.
+                            </td>
+                        </tr>
+                    )}
+
+                    {itensFiltrados.map((registro) => {
                         const item = registro.item;
 
                         return (
