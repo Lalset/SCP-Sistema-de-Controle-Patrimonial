@@ -98,17 +98,15 @@
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    border-radius: 8px;
-    padding: 12px 14px;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 0 14px;
     margin-bottom: 14px;
 }
 
 .renomear-lote-bar span {
     font-size: 13px;
-    font-weight: 600;
-    color: #1d4ed8;
+    font-weight: 500;
+    color: #6b7280;
     white-space: nowrap;
 }
 
